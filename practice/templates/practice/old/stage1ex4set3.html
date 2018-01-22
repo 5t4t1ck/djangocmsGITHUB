@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><span style="color: #3366cc;"><big>STAGE 1 <b>: </b>Acute Rehabilitation : Exercise 4</big> </span></h2>
+<h3 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><span style="color: #3366cc;"><big>Begin on 12 juin 2017, Day {{day1.day}}</big></span></h3>
+
+<p>&nbsp;</p>
+{% if day1.ex4set3t3 == False %}
+<h5 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">You have to do now this exercise 10x times by set, and you have 3 sets</span></h5>
+<h5 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">Press the button [NEXT SET] when you have finished your 10 trials</span></h5>
+<h5 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">The video will explain to you the movement to make</span></h5>
+{% endif %}
+
+{% if day1.ex4set3t1 == False %}
+<h2 style="text-align: center;">Set 1/3</h2>
+<h2 style="text-align: center;">&#128308;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128308;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128308;<br /></h2>
+{% endif %}
+{% if day1.ex4set3t1 == True and day1.ex4set3t2 == False %}
+<h2 style="text-align: center;">Set 2/3</h2>
+<h2 style="text-align: center;">&#128309;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128308;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128308;<br /></h2>
+{% endif %}
+{% if day1.ex4set3t2 == True and day1.ex4set3t3 == False %}
+<h2 style="text-align: center;">Set 3/3</h2>
+<h2 style="text-align: center;">&#128309;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128309;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128308;<br /></h2>
+{% endif %}
+{% if day1.ex4set3t3 == True %}
+<h2 style="text-align: center;">Sets finished !</h2>
+<h2 style="text-align: center;">&#128309;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128309;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128309;<br /></h2>
+{% endif %}
+
+{% if day1.ex4set3t3 == False %}
+<p text-align: center;">
+<video name='demo' poster="{{ MEDIA_URL }}ex4.jpg" style="display:block; margin: 0 auto;" controls width='70%' height='60%'>
+<source src="{{ MEDIA_URL }}4ok.webm" type="video/webm"></source>
+</video>
+</p>
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <form id="user_form" method="post" action="/practice/stage1/exercise/ex4set3/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <p>&nbsp;</p>
+            <h3 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">CONTINUE TO NEXT STEP &#128073; : </span>
+            <!-- Provide a button to click to submit the form. -->
+            <button type="submit" name ="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">NEXT SET !</i></button></h3>
+        </form>
+    </body>
+</html>
+{% endif %}
+
+{% if day1.ex4set3t3 == True %}
+<h2 style="text-align: center;"><span style="color: #4fa3ce;"><a href="http://127.0.0.1:8000/practice/stage1/exercise/ex5set3/" target="_self">NEXT EXERCISE &#128073;</a></span> <br /></h2>
+{% endif %}
+
+<html>
+<h2><a href="http://127.0.0.1:8000/practice/stage1/exercise/" target="_self">&#128072; BACK TO EXERCISES MENU</a></h2>
+</html>
+
+{% endblock %}

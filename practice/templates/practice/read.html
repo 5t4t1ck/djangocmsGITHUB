@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Messaging System: Read Messages</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Read Messages Page CSS Style Page-->
+        <link rel="stylesheet" href="/media/read.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container" style="text-align: center; margin-top: 20px;">
+                <div class="row">
+                <h3 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"><span style=" color: #666699;">{{data.0}}</span></h3>
+                <p> Date : {{ data.1 }}</p>
+                <p> From : {{ data.2 }} {{ data.3}}</p>
+                <p> To : {{ data.4 }} {{data.5 }}</p>
+                <p style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"> Message : {{ data.6 }}</p>
+                {% if quest %}
+                <p> Last questionnaire from this patient : <a style="text-decoration: none !important" href="/kine/questionnaire/read/{{quest.id}}/">CLICK HERE</a></p>
+                {% endif %}
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <a style="text-decoration: none !important" href="/practice/messagerie/inbox/" target="_self"><button type="button" class="btn btn-danger btn-md">RETURN TO INBOX</button></a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

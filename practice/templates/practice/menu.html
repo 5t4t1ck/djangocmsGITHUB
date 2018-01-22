@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Practice Menu: Choose a Stage!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Stage Menu CSS Style Page-->
+        <link rel="stylesheet" href="/media/stagemenu.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <div class="row">
+<h2 style="padding: 5px 10px; text-align: center;"><big>CHOOSE A STAGE:</big></h2>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4" style="text-align: center;">
+<p>&nbsp;</p>
+
+{% if user_autho.stage1 == True %}
+                        <a style="text-decoration: none !important" href="/practice/stage1/"> <img alt="Unlocked" src="/media/unlocked.png"> </a>
+    <h1><a style="text-decoration: none !important" href="/practice/stage1/">STAGE 1</a></h1>
+{% endif %}
+{% if user_autho.stage1 == False %}
+                        <a style="text-decoration: none !important" href="/practice/menu/"> <img alt="Locked" src="/media/locked.png"> </a>
+    <h1><a style="text-decoration: none !important" href="/practice/menu/" style="text-decoration: none !important">STAGE 1</a></h1>
+{% endif %}
+                    </div>
+                    
+                    <div class="col-md-4" style="text-align: center;">
+<p style="text-align: center;">&nbsp;</p>
+
+{% if user_autho.stage2 == True %}
+                        <a style="text-decoration: none !important" href="/assessment/"> <img alt="Unlocked" src="/media/unlocked.png"> </a>
+    <h1><a style="text-decoration: none !important" href="/practice/stage2/">STAGE 2</a></h1>
+{% endif %}
+{% if user_autho.stage2 == False %}
+                        <a style="text-decoration: none !important" href="/practice/menu/"> <img alt="Locked" src="/media/locked.png"> </a>
+    <h1><a style="text-decoration: none !important" href="/practice/menu/">STAGE 2</a></h1>
+{% endif %}
+                        
+                    </div>
+                    
+                    <div class="col-md-4" style="text-align: center; margin-bottom: 10px;">
+<p style="text-align: center;">&nbsp;</p>
+
+{% if user_autho.stage3 == True %}
+                   <a style="text-decoration: none !important" href="/practice/stage3/"> <img alt="Unlocked" src="/media/unlocked.png"> </a>     
+    <h1><a style="text-decoration: none !important" href="/practice/stage3/">STAGE 3</a></h1>
+{% endif %}
+{% if user_autho.stage3 == False %}
+                        <a style="text-decoration: none !important" href="/practice/menu/"> <img alt="Locked" src="/media/locked.png"> </a>
+    <h1><a style="text-decoration: none !important" href="/practice/menu/">STAGE 3</a></h1>
+{% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="/patient/" style="text-decoration: none !important;"> <button type="button" class="btn btn-primary btn-block">RETURN TO PATIENT MENU</button> </a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

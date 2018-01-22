@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mail Box </title>
+    </head>
+
+    <body>
+        <p><span style="font-family: verdana,geneva; color: #666699; font-size: large;">Message received</span></p>
+
+
+        {% if data %}
+        <ul>
+            {% for message in data %} 
+                {% if message.4 == False and message.6 == False %}
+                <li><a href="/practice/messagerie/read/{{message.5}}" style="text-decoration: none"> &#128310; &#128065; </a> |Date| {{message.0}} |Sender| {{message.1}} {{message.2}} |Object| {{message.3}}    <a href="/practice/messagerie/deletemesrec/{{message.5}}/" style="text-decoration: none"> &nbsp;&nbsp;&nbsp;&#128465; </a></li>
+                {% endif %}
+                {% if message.4 == True and message.6 == False %}
+                <li><a href="/practice/messagerie/read/{{message.5}}" style="text-decoration: none"> &#128065; </a> |Date| {{message.0}} |Sender| {{message.1}} {{message.2}} |Object| {{message.3}}    <a href="/practice/messagerie/deletemesrec/{{message.5}}/" style="text-decoration: none"> &nbsp;&nbsp;&nbsp;&#128465; </a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No messages received</p>
+        {% endif %}
+
+        <p><span style="font-family: verdana,geneva; color: #666699; font-size: large;">Message sent</span></p>
+
+        {% if data2 %}
+        <ul>
+            {% for message in data2 %}
+                {% if message.6 == False %}
+                <li><a href="/practice/messagerie/read/{{message.5}}" style="text-decoration: none"> &#128065; </a> |Date| {{message.0}} |Receiver| {{message.1}} {{message.2}} |Object| {{message.3}}    <a href="/practice/messagerie/deletemessen/{{message.5}}" style="text-decoration: none"> &nbsp;&nbsp;&nbsp;&#128465; </a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No messages sent</p>
+        {% endif %}
+
+        <p><a href="/practice/messagerie/" target="_self"><strong>RETURN TO MESSAGING</strong></a></p>
+    </body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1><span style="font-family: arial,helvetica,sans-serif; color: #666699;">{{ user.first_name }}, Choose an option</span></h1>
+
+<a href="/accounts/password_change">[ Change Password ]</a></p>
+
+<a href="/extra/update/{{user.id}}">[ Update your Information ]</a></p>
+
+<p><a href="/patient" target="_self"><strong>RETURN</strong></a></p>
+
+
+{% endblock %}

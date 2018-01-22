@@ -1,0 +1,7 @@
+{% ifequal user.is_superuser True %}
+<meta http-equiv="refresh" content="1; URL=/physio/">
+{% endifequal %}
+
+{% if user.is_superuser != True %}
+<meta http-equiv="refresh" content="1; URL=/">
+{% endif %}

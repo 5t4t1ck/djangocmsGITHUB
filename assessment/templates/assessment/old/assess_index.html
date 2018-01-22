@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kinect Assessment Module</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- change the IP to yours -->
+<canvas id="bodyCanvas" width="512" height="424"></canvas>
+<canvas id="rectangle" width="30" height="30"></canvas>
+<script src="http://localhost:4000/socket.io/socket.io.js"></script>
+<script>
+    // host of the server
+    var host = 'localhost';
+    var nodejs_port = '4000';
+
+    var socket = io(host + ':' + nodejs_port);
+    var canvas = document.getElementById('bodyCanvas');
+    var ctx = canvas.getContext('2d');
+    var canvas2 = document.getElementById('rectangle');
+    var ctx2 = canvas2.getContext('2d');
+    var color = "Red";
+    var colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+    var ind = 0;
+    var tab = new Array();
+    var write = 0;
+    var rect = 1;
+
+    // handstate circle size
+    var HANDSIZE = 20;
+
+    // closed hand state color
+    var HANDCLOSEDCOLOR = "red";
+
+    // open hand state color
+    var HANDOPENCOLOR = "green";
+
+    // lasso hand state color
+    var HANDLASSOCOLOR = "blue";
+
+    function updateHandState(handState, jointPoint) {
+        switch (handState) {
+            case 3:
+                drawHand(jointPoint, HANDCLOSEDCOLOR);
+                if ((jointPoint.depthX * 512) >= 362 && (jointPoint.depthX * 512) <= 462 && (jointPoint.depthY * 424) >= 50 && (jointPoint.depthY * 424) <= 150) {
+                    color = "Green";
+                }
+                break;
+
+            case 2:
+                drawHand(jointPoint, HANDOPENCOLOR);
+                color = "red";
+                break;
+
+            case 4:
+                drawHand(jointPoint, HANDLASSOCOLOR);
+                color = "red";
+                break;
+            default:
+                color = "red";
+        }
+    }
+
+    function drawHand(jointPoint, handColor) {
+        // draw semi transparent hand cicles
+        ctx.globalAlpha = 0.75;
+        ctx.beginPath();
+        ctx.fillStyle = handColor;
+        ctx.arc(jointPoint.depthX * 512, jointPoint.depthY * 424, HANDSIZE, 0, Math.PI * 2, true);
+        ctx.fill();
+        ctx.closePath();
+        ctx.globalAlpha = 1;
+    }
+
+    function drawBone(joint1, joint2) {
+            ctx.strokeStyle='red';
+            ctx.lineWidth=2; 
+            ctx.lineCap='round';
+            ctx.beginPath();
+            ctx.moveTo(joint1.depthX * 512 + 3,joint1.depthY * 424 + 3);
+            ctx.lineTo(joint2.depthX * 512 + 3,joint2.depthY * 424 + 3);
+            ctx.stroke();
+    }
+
+    function drawHead(joint) {
+            ctx.beginPath();
+            ctx.fillStyle ='red';
+            ctx.arc(joint.depthX * 512 + 3, joint.depthY * 424 + 3, 15, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.closePath();
+            ctx.globalAlpha = 1;
+    }
+
+    socket.on('bodyFrame', function (bodyFrame) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (rect == 1) {
+            ctx.strokeStyle = color;
+            ctx.strokeRect(362, 50, 100, 100);
+        }
+        var index = 0
+        bodyFrame.bodies.forEach(function (body) {
+            if (body.tracked) {
+                for (var jointType in body.joints) {
+                    var joint = body.joints[jointType];
+                    ctx.fillStyle = colors[index];
+                    ctx.fillRect(joint.depthX * 512, joint.depthY * 424, 6, 6);
+                }
+                //draw hand states
+                updateHandState(body.leftHandState, body.joints[7]);
+                updateHandState(body.rightHandState, body.joints[11]);
+                //draw hand states
+                updateHandState(body.leftHandState, body.joints[7]);
+                updateHandState(body.rightHandState, body.joints[11]);
+                //RightArm
+                drawBone(body.joints[20], body.joints[8]);
+                drawBone(body.joints[8], body.joints[9]);
+                drawBone(body.joints[9], body.joints[10]);
+                drawBone(body.joints[10], body.joints[11]);
+                drawBone(body.joints[10], body.joints[24]);
+                drawBone(body.joints[11], body.joints[23]);
+                //Body
+                drawBone(body.joints[3], body.joints[2]);
+                drawBone(body.joints[2], body.joints[20]);
+                drawBone(body.joints[20], body.joints[1]);
+                drawBone(body.joints[1], body.joints[0]);
+                //LeftArm
+                drawBone(body.joints[20], body.joints[4]);
+                drawBone(body.joints[4], body.joints[5]);
+                drawBone(body.joints[5], body.joints[6]);
+                drawBone(body.joints[6], body.joints[7]);
+                drawBone(body.joints[6], body.joints[22]);
+                drawBone(body.joints[7], body.joints[21]);
+                //RightLeg
+                drawBone(body.joints[0], body.joints[16]);
+                drawBone(body.joints[16], body.joints[17]);
+                drawBone(body.joints[17], body.joints[18]);
+                drawBone(body.joints[18], body.joints[19]);
+                //LeftLeg
+                drawBone(body.joints[0], body.joints[12]);
+                drawBone(body.joints[12], body.joints[13]);
+                drawBone(body.joints[13], body.joints[14]);
+                drawBone(body.joints[14], body.joints[15]);
+                //Head
+                drawHead(body.joints[3])
+                index++;
+                if (write == 1) {
+                    rect = 0;
+                    color = "White";
+                    tab[ind] = body;
+                    console.log(tab[ind]);
+                    ind++;
+                }
+            }
+        });
+    });
+
+    function myFunction() {
+            write = 0;
+            msgObject = {
+                'user_name': "Clement",//name.val().trim(),
+                'message': "Clement",//"Clement"//msg.val().trim()
+                'data' : tab
+            };
+
+            socket.emit('message', msgObject);
+            ind = 0;
+            tab = new Array();
+    }
+
+    function myFunction2() {
+
+        write = 1;
+    }
+
+
+</script>
+
+</body>
+
+<body>
+    <h1 style="text-align: center;">
+        <div id='timer' />
+        <button type="button" onclick="myFunction2()"> Start Recording </button>
+    </h1>
+</body>
+
+<body>
+    <h1 style="text-align: center;">
+        <div id='timer' />
+        <button type="button" onclick="myFunction()"> Stop Recording </button>
+    </h1>
+</body>
+</html>

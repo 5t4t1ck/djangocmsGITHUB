@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Access Denied!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Access Pages CSS Style Page-->
+        <link rel="stylesheet" href="/media/access.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+        <div class="container">
+            <div class="row">
+                <h1><span style="color: #e74c3c;">YOU CAN'T PRACTICE TODAY!</span></h1>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="text-align: center">
+                <img alt="Denied" src="/media/denied.png">
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            
+            <div class="row" style="margin-bottom: 10px;">
+                <h3><span id="result_box" lang="en" class="short_text"><span>Your state does not allow you to practice today. A message has been sent to your physiotherapist.</span></span></h3>
+            </div>
+            
+            <div class="row" style="text-align: center">
+                <a href="/patient/" style="text-decoration: none !important"><button type="button" class="btn btn-danger btn-lg">RETURN TO INTERFACE</button> </a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

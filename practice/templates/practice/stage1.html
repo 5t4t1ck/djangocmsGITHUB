@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Stage 1: Choose an option!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Stage 1 Menu CSS Style Page-->
+        <link rel="stylesheet" href="/media/stage1.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <div class="row">
+<h2><span style="color: #DC6750;"><big>STAGE 1 <b>: </b>Acute Rehabilitation</big></span></h2>
+                </div>
+                    
+                <div class="row">
+<h3 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"><big>Begin on {{stage.begin}}, Day {{day1.day}}</big></h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4" style="text-align: center;">
+<p>&nbsp;</p>
+                        <a href="/practice/stage1/education/"> <img alt="Education" src="/media/education.png"> </a>
+<h2><a href="/practice/stage1/education/" style="text-decoration: none !important">Education</a></h2>
+                    </div>
+                    
+                    <div class="col-md-4" style="text-align: center;">
+
+<p style="text-align: center;">&nbsp;</p>
+                        <a href="/practice/stage1/cryotherapy/"> <img alt="Cryotherapy" src="/media/cryotherapy.png"> </a>
+<h2><a href="/practice/stage1/cryotherapy/" style="text-decoration: none !important">Cryotherapy</a></h2>
+                    </div>
+                    
+                    <div class="col-md-4" style="text-align: center; margin-bottom: 10px;">
+
+<p style="text-align: center;">&nbsp;</p>
+                        <a href="/practice/stage1/exercise/"> <img alt="Active Exercise" src="/media/activexercise.png"> </a>
+<h2><a href="/practice/stage1/exercise/" style="text-decoration: none !important">Active Exercise</a></h2>
+                    </div>
+                </div>
+                
+                <div class="row">
+                <a href="/practice/menu/" style="text-decoration: none !important"><button type="button" class="btn btn-primary btn-block">RETURN TO MENU</button></a>
+                    
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

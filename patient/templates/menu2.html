@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Patient Menu</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--patientmenu.css Style Page-->
+        <link rel="stylesheet" href="/media/patientmenu.css" type="text/css">
+        
+        <!-- General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+    
+    <!--BOOTSTRAP-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--BOOTSREAP-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="default.js"></script>
+
+
+
+
+    </head>
+    
+    <body>
+    <!--Régua:<hr width="1" size="500">-->
+    <!--NavBar-->
+
+    <!--NavBar-->
+        
+        <!-- Page's Content-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <!-- Title Text-->
+                <div class="row" style=" margin-bottom: 60px;">
+                    <h1 id="menuttl">MAIN MENU</h1>
+                </div>
+                <!-- Contents: Images & Links-->
+
+                <div class="row">
+                    <div class="col-md-3" style="text-align: center">
+                        <a onclick="launchFullScreen(document.documentElement);" href="/patient/practice/"> <img src="/media/Practice.png" alt="Practice"> </a>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">
+                        <a href=""> <img src="/media/Consult.png" alt="Consult"> </a>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <a href="/practice/messagerie/"> <img src="/media/Messaging.png"> </a>
+                    </div>
+                </div>
+                
+                <!-- Contents: Text Under Images-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <a data-toggle="tooltip" data-placement="bottom" title="Here, you can start your exercises. Just click the image above!"> <h3 style="text-align: center">PRACTICE</h3> </a>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">
+                        <a data-toggle="tooltip" data-placement="bottom" title="Here, you can check your statistics. Just click the image above!"> <h3>CONSULT</h3> </a>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3" style="text-align: center">
+                        <a data-toggle="tooltip" data-placement="bottom" title="Here, you can read and send messages. Just click the image above!"> <h3 >MESSAGING</h3> </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Page's Content-->
+
+<!--Tooltips-->
+<script>
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+        </script>
+
+    </body>
+</html>
+
+
+
+{% endblock %}

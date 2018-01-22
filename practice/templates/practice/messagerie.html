@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Messaging System</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Messaging System CSS Style Page-->
+        <link rel="stylesheet" href="/media/messagerie.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <div class="row">
+<h2 style="padding: 5px 10px;"><big>Messaging | {{read}} unread message(s)</big></h2>
+                </div>
+
+<p>&nbsp;</p>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-4" style="text-align: center;">
+                        <a href="/practice/messagerie/inbox/" style="text-decoration: none !important"> <img alt="INBOX" src="/media/inbox.png"> </a>
+                        {% if read != 0 %}
+                        <h2><a href="/practice/messagerie/inbox/" style="text-decoration: none !important">&#128308;INBOX</a></h2>
+                        {% endif %}
+                        {% if read == 0 %}
+                        <h2><a href="/practice/messagerie/inbox/" style="text-decoration: none !important">INBOX</a></h2>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <a style="text-decoration: none !important" href="/practice/messagerie/write/"> <img alt="Send Message" src="/media/send.png"> </a>
+                        <h2><a style="text-decoration: none !important" href="/practice/messagerie/write/">SEND MESSAGE</a></h2>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <a style="text-decoration: none !important" href="/practice/messagerie/contact/"> <img alt="Contacts" src="/media/contacts.png"> </a>
+                        <h2 style="text-align: center;"><a style="text-decoration: none !important" href="/practice/messagerie/contact/">CONTACTS</a></h2>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    {% ifequal user.is_superuser False %}
+                    <a style="text-decoration: none !important" href="/patient/"> <button type="button" class="btn btn-danger btn-block">RETURN TO PATIENT MENU</button> </a>
+                    {% endifequal %}
+
+                    {% ifequal user.is_superuser True %}
+                    <a style="text-decoration: none !important" href="/physio/"> <button type="button" class="btn btn-danger btn-block">RETURN TO PHYSIOTHERAPIST MENU</button> </a>
+                    {% endifequal %}
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

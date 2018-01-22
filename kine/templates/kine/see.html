@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>See Patient: Options!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--Specific Style Page-->
+        <link rel="stylesheet" href="/media/physeeptnsub.css" type="text/css">
+        
+        <!-- General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+    
+    <!--BOOTSTRAP-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="default.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </head>
+    
+    <body>
+        
+        <!-- Page's Content-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <!-- Title Text-->
+                <div class="row" style=" margin-bottom: 60px;">
+                    <h1 id="menuttl"><span style="color: #5C9393;">PATIENT'S OPTIONS : {{ patient.first_name }} {{ patient.last_name }}</span></h1>
+                </div>
+                <!-- Contents: Images & Links-->
+                <div class="row">
+                    <div class="col-md-3" style="text-align: center">
+                        <a href="#"> <img src="/media/sexcst.png" alt="Records"> </a>
+                    </div>
+                    <div class="col-md-3">
+                    <a href="/kine/questionnaire/{{patient.id}}/"> <img src="/media/questions.png" alt="Questionnaire"> </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#"> <img src="/media/newnote.png" alt="New Note"> </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="/extra/profile/{{patient.id}}/"> <img src="/media/Newpatient.png" alt="Profile Page"> </a>
+                    </div>
+                </div>
+                
+                <!-- Contents: Text Under Images-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <a data-toggle="tooltip" data-placement="bottom" title="Here, you can check the statistics and the exercises of your patient. Just click the image above!"> <h3 style="text-align: center">CHECK RECORDS</h3> </a>
+                    </div>
+                    <div class="col-md-3">
+                    <a data-toggle="tooltip" data-placement="bottom" title="Here, you can check the questionnaire's answers of your patient. Just click the image above!"> <h3>SURVEY RESULTS</h3> </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a data-toggle="tooltip" data-placement="bottom" title="Here, you can create and add a new note. Just click the image above!"> <h3>ADD NOTE</h3> </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a data-toggle="tooltip" data-placement="bottom" title="Here, you can check your patient's profile page and edit information. Just click the image above!"> <h3 style="text-align: center">PROFILE PAGE</h3> </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Page's Content-->
+
+<!--Tooltips-->
+<script>
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+        </script>
+    </body>
+</html>
+
+{% endblock %}

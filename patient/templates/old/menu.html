@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!doctype html>
+<html>
+<head>
+    <title>Accueil</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style type="text/css">
+        .nav {
+            padding-left: 0;
+        }
+
+            .nav li {
+                display: inline;
+                list-style-type: none;
+                padding-right: 20px;
+            }
+
+        .container {
+            width: 940px;
+            margin: 0 auto;
+        }
+
+        .content {
+            float: left;
+            width: 80%;
+        }
+
+        .sidebar {
+            float: left;
+            width: 20%;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <div class="container">
+        <ul class="nav"></ul>
+
+        <h1 style="text-align: center;"> </h1>
+
+        <h1 style="text-align: center;"> </h1>
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+        <h1 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><span style="color: #2980b9;">WELCOME ON TELE-REHABILITATION PLATFORM !</span></h1>
+
+        <div class="multicolumn2 clearfix">
+
+
+            <div class="column" style="width: 50%; float: left;">
+
+                <h1 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><a href="/patient/"><span style="color: #4e5f70;">PATIENT LOGIN</span></a></h1>
+
+
+            </div>
+
+
+            <div class="column" style="width: 50%; float: left;">
+
+                <h1 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><a href="/kine/choice/"><span style="color: #4e5f70;">PHYSIO LOGIN</span></a></h1>
+
+
+            </div>
+
+        </div><h3 style="font-style: italic; text-align: center;"> </h3>
+
+        <h3 style="font-style: italic; text-align: center;"> </h3>
+
+        <h3 style="font-style: italic; text-align: center;"><span style="color: #7f8c8d;"><em>HELP ?</em></span></h3>
+
+    </div>
+
+
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+<form method="post" action="{% url 'accounts:login' %}">
+{% csrf_token %}
+<table>
+{{ form }}
+</table>
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="/patient/" />
+{% if user.username == 'clement' %}
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="/" />
+{% endif %}
+</form>
+<p><a href="/" target="_self"><strong>RETURN</strong></a></p>
+{% endblock %}

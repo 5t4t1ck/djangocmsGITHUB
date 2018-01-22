@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Patient's List</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Patient's List Page CSS Style Page-->
+        <link rel="stylesheet" href="/media/patient.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                    <div class="col-md-5">
+                        <h3>HERE IS THE LIST OF YOUR PATIENTS:</h3>
+                        {% if patient_list %}
+                        <ul>
+                            {% for patient in patient_list %}
+                            <li><h3><a href="/kine/see/{{patient.user.user.id}}/" style="text-decoration: none "><button>{{ patient.user.user.first_name }} {{ patient.user.user.last_name }}</button></a></h3></li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <p>No patients</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                        <img alt="Patient's List" src="/media/patientlist.png">
+                        <p>&nbsp;</p>
+                        <button type="button" onclick="info()" class="btn btn-info">+info</button>
+                        <div id="info">
+                            Click on a patient name to get acces to his information.
+                        </div>
+                    </div>
+                </div>
+                    <div class="row" style="text-align: center; margin-top: 30px;">
+                    <a style="text-decoration: none !important" href="/physio/" target="_self"><button type="button" class="btn btn-danger btn-block">RETURN TO MENU</button></a>
+                </div>
+                    
+                    <script>
+                    function info() {
+                        var x = document.getElementById('info');
+                        if (x.style.display === 'none') {
+                            x.style.display = 'block';
+                        } 
+                        else {
+                            x.style.display = 'none';
+                        }
+                    }
+                    </script>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

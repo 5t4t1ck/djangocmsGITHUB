@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Write a message </title>
+    </head>
+
+    <body>
+        <p><span style="font-family: verdana,geneva; color: #666699; font-size: large;">Write a message here</span></p>
+
+        <form id="user_form" method="post" action="/practice/messagerie/write/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <p> Choose a receiver : <select name="receiver" required>
+                {% for contact in data %}
+                <option value="{{contact.0}}">{{contact.1}} {{contact.2}}</option>
+                {% endfor %}
+            </select></p>
+            
+            <p> Object : {{ message_form.title }}</p>
+            <p> Type your message here : </p> {{ message_form.message }}
+   
+            <p><button type="submit" name="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">SEND MESSAGE</i></button></p>
+            <p><a href="/practice/messagerie/" target="_self"><strong>RETURN TO MESSAGING</strong></a></p>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

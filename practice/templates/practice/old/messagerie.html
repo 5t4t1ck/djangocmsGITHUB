@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<h2 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><span style="color: #3366cc;"><big>Messaging | {{read}} unread message(s)</big></span></h2>
+
+<p>&nbsp;</p>
+
+    {% if read != 0 %}
+    <h1 style="text-align: center;"><a href="/practice/messagerie/inbox/"><span style="color: #00cccc;"><span style="background-color: rgb(236, 240, 241);">&#128308; &#9993; INBOX &#128073;</span></span></a></h1>
+    {% endif %}
+    {% if read == 0 %}
+    <h1 style="text-align: center;"><a href="/practice/messagerie/inbox/"><span style="color: #00cccc;"><span style="background-color: rgb(236, 240, 241);">&#9993; INBOX &#128073;</span></span></a></h1>
+    {% endif %}
+
+<p style="text-align: center;">&nbsp;</p>
+
+    <h1 style="text-align: center;"><a href="/practice/messagerie/write/"><span style="color: #00cccc;"><span style="background-color: rgb(236, 240, 241);">&#128393; SEND MESSAGE &#128073;</span></span></a></h1>
+
+<p style="text-align: center;">&nbsp;</p>
+
+    <h1 style="text-align: center;"><a href="/practice/messagerie/contact/"><span style="color: #00cccc;"><span style="background-color: rgb(236, 240, 241);">&#9742; CONTACTS &#128073;</span></span></a></h1>
+
+
+<h2><a href="/patient/" target="_self">&#128072; BACK TO PATIENT MENU</a></h2>
+
+{% endblock %}

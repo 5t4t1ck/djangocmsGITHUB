@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Stage 1 Cryotherapy!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Stage Menu CSS Style Page-->
+        <link rel="stylesheet" href="/media/stage1cryo.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!--BOOTSREAP-->
+        
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <div class="row">
+                <h2><span style="color: #DC6750;"><big>STAGE 1 "Acute Rehabilitation" <b>: </b>Cryotherapy</big></span></h2>
+                </div>
+                
+                <div class="row">
+                <h3 style="padding: 5px 10px;"><big>Begin on {{stage.begin}}, Day {{day1.day}}</big></h3>
+                </div>
+                
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-5" style="text-align: center;">
+                        <img alt="Cryotherapy" src="/media/cryotherapy.png" style="margin-top: 50px;">
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5" style="text-align: center;">
+                        <p>&nbsp;</p>
+                        <h4>You have to apply a cryotherapy device 5&deg; D or an ice bag for 15 minutes. Press the button [Done!] when you have finished. Below, you have a 15 minutes countdown timer to help you.</h4>
+                        <h4> <div id='timer' /> <button type="button" onclick="myFunction()"> TIMER (15 min) </button> </h4>
+                        
+                        <form id="user_form" method="post" action="/practice/stage1/cryotherapy/"
+                enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            <h3>CONTINUE TO NEXT STEP
+                                <!-- Provide a button to click to submit the form. -->
+                                <button type="submit" name ="submit" class="btn btn-success"><i class="large material-icons">DONE !</i></button></h3></form>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <a href="/practice/stage1/"> <button type="button" class="btn btn-danger btn-block">BACK TO STAGE 1</button> </a>
+                </div>
+
+
+
+<script type="text/javascript">
+var Timer;
+var TotalSeconds;
+
+
+function CreateTimer(TimerID, Time) {
+Timer = document.getElementById(TimerID);
+TotalSeconds = Time;
+
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+
+function Tick() {
+if (TotalSeconds <= 0) {
+alert("Time's up!")
+return;
+}
+
+TotalSeconds -= 1;
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+
+function UpdateTimer() {
+var Seconds = TotalSeconds;
+
+var Days = Math.floor(Seconds / 86400);
+Seconds -= Days * 86400;
+var Hours = Math.floor(Seconds / 3600);
+Seconds -= Hours * (3600);
+
+var Minutes = Math.floor(Seconds / 60);
+Seconds -= Minutes * (60);
+
+
+var TimeStr = ((Days > 0) ? Days + " days " : "") + LeadingZero(Hours) + ":" + LeadingZero(Minutes) + ":" + LeadingZero(Seconds)
+
+
+Timer.innerHTML = TimeStr;
+}
+
+function LeadingZero(Time) {
+
+return (Time < 10) ? "0" + Time : + Time;
+
+}
+
+function myFunction() {
+
+window.onload = CreateTimer("timer", 900);
+
+}
+
+</script>
+                
+                
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

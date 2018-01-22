@@ -1,0 +1,393 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+   
+<!-- Index Page with BOOTSTRAP-->
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="default.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Kinect Assessment Module</title>
+    <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css"> -->
+    <link rel="stylesheet" type="text/css" href="/media/mainNav.css">
+    
+    <!--BOOTSTRAP-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="default.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+</head>
+    
+<body>
+
+</br>
+</br>
+</br>
+
+
+        <div class="row">
+ <div class="col-sm-6">
+                <div class="center">
+                    <h1 id="tempo">Time</h1>
+                    <p class="Timer">Session Time: <span id="telapsed"></span> </p>
+                </div>
+ </div>
+            <div class="col-sm-6">
+                 <button type="button"  style="margin-bottom: 10px;" class="btn btn-primary btn-block" onclick="launchFullScreen(document.documentElement);">ACTIVATE FULL SCREEN</button>
+
+
+                 <button type="button"  style="margin-bottom: 10px;" class="btn btn-primary btn-block" class="Record" onclick="comenzar();">Start Recording</button>
+
+
+                 <button onclick="terminar();" type="button"  style="margin-bottom: 10px;" class="btn btn-primary btn-block">Stop Recording</button>
+                </div>
+  </div>
+
+
+
+    <!--Canvas-->
+    <section class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <canvas id="bodyCanvas" width="512" height="550">
+                    <h1 id="Timer"></h1>
+                    </canvas>
+                    </div>
+            <div class="col-sm-6">
+                <video width="512" height="550" autoplay loop muted>
+                <source src="/media/test27july.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+    <!--Canvas-->
+    
+    <!--Text under canvas-->
+    <section class="container">
+        <div class="row">
+
+            <div class="col-sm-6">
+                <p>Personal Progress:</p>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%"> 12/40
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <button type="button" class="ExerciseN">Next Exercise</button>
+    
+<!-- Scripts & Function-->
+<script src="http://telerehabilitation.cedia.org.ec/:4000/socket.io/socket.io.js"></script>
+
+<script>
+    // host of the server
+    var host = 'http://telerehabilitation.cedia.org.ec';
+    var nodejs_port = '4000';
+
+    var socket = io(host + ':' + nodejs_port);
+    var canvas = document.getElementById('bodyCanvas');
+    var ctx = canvas.getContext('2d');
+    //var canvas2 = document.getElementById('rectangle');
+    //var ctx2 = canvas2.getContext('2d');
+    var color = "Red";
+    var colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+    var ind = 0;
+    var tab = new Array();
+    var write = 0;
+    var rect = 1;
+
+
+
+    // handstate circle size
+    var HANDSIZE = 20;
+
+    // closed hand state color
+    var HANDCLOSEDCOLOR = "red";
+
+    // open hand state color
+    var HANDOPENCOLOR = "green";
+
+    // lasso hand state color
+    var HANDLASSOCOLOR = "blue";
+
+
+
+    function comenzar(){
+
+    color = "Green";
+
+                    write = 1;
+                    //Timer Function
+                    var count = 4;
+                    var counter = setInterval(timer, 1000); //Runs every second (1000ms=1s)
+                    function timer() {
+                        count = count - 1;
+                        if (count == 0) {
+                            document.getElementById("tempo").style.color = 'green'
+                            document.getElementById("tempo").innerHTML = "Begin!"
+                             document.getElementById("telapsed").innerHTML=""
+                            return;
+                        }
+                        if (count < 0) {
+                            clearInterval(counter);
+                            document.getElementById("tempo").innerHTML = "REC"
+
+                            return;
+                        }
+                        document.getElementById("tempo").style.color = 'red'
+                        document.getElementById("tempo").size = "20";
+                        document.getElementById("tempo").innerHTML = count;
+                    }
+
+    var sec = 0;
+    var min = 0;
+    var hour = 0;
+    var ncounter = setInterval(telapsed, 1000);
+    function telapsed() {
+            sec = sec + 1;
+            if(document.getElementById("telapsed").innerHTML=="Stop"){
+            document.getElementById("telapsed").innerHTML="Stop"}
+            else{
+            if (sec == 60) {
+                sec = 0;
+                min = min + 1;
+            }
+            else if (min == 60) {
+                sec = 1;
+                min = 0;
+                hour = hour + 1;
+            }
+            if (sec < 10 && min < 10 && hour < 10) {
+                document.getElementById("telapsed").innerHTML = "0" + hour + ":" + "0" + min + ":" + "0" + sec;
+            }
+            else if (min < 10 && hour < 10) {
+                document.getElementById("telapsed").innerHTML = "0" + hour + ":" + "0" + min + ":" + sec;
+            }
+            else if (hour < 10) {
+                document.getElementById("telapsed").innerHTML = "0" + hour + ":" + min + ":" + sec;
+            }
+            }
+        }
+    }
+
+    function terminar(){
+
+     document.getElementById("tempo").style.color = 'red'
+     document.getElementById("tempo").innerHTML = "REC finished!!"
+     document.getElementById("telapsed").innerHTML ="Stop"
+     return;
+    }
+
+
+
+    function updateHandState(handState, jointPoint) {
+        switch (handState) {
+            case 3:
+                drawHand(jointPoint, HANDCLOSEDCOLOR);
+                if ((jointPoint.depthX * 512) >= 362 && (jointPoint.depthX * 512) <= 462 && (jointPoint.depthY * 424) >= 50 && (jointPoint.depthY * 424) <= 150) {
+                    color = "Green";
+                    
+                    write = 1;
+                    //Timer Function
+                    var count = 4;
+                    var counter = setInterval(timer, 1000); //Runs every second (1000ms=1s)
+                    function timer() {
+                        count = count - 1;
+                        if (count == 0) {
+                            document.getElementById("tempo").style.color = 'green'
+                            document.getElementById("tempo").innerHTML = "Begin!"
+                            return;
+                        }
+                        if (count < 0) {
+                            clearInterval(counter);
+                            document.getElementById("tempo").innerHTML = ""
+                            return;
+                        }
+                        document.getElementById("tempo").style.color = 'red'
+                        document.getElementById("tempo").size = "20";
+                        document.getElementById("tempo").innerHTML = count;
+                    }
+                }
+                break;
+            
+            case 2:
+                drawHand(jointPoint, HANDOPENCOLOR);
+                color = "red";
+                break;
+
+                //To Stop Recording
+            case 4:
+                drawHand(jointPoint, HANDLASSOCOLOR);
+                if ((jointPoint.depthX * 512) >= 52 && (jointPoint.depthX * 512) <= 152 && (jointPoint.depthY * 424) >= 50 && (jointPoint.depthY * 424) <= 150) {
+                color = "blue";
+                write = 0;
+                }
+                break;
+            default:
+                color = "red";
+        }
+    }
+    
+    
+//Draw hands function
+    function drawHand(jointPoint, handColor) {
+        // draw semi transparent hand cicles
+        ctx.globalAlpha = 0.75;
+        ctx.beginPath();
+        ctx.fillStyle = handColor;
+        ctx.arc(jointPoint.depthX * 512, jointPoint.depthY * 424, HANDSIZE, 0, Math.PI * 2, true);
+        ctx.fill();
+        ctx.closePath();
+        ctx.globalAlpha = 1;
+    }
+    
+//Draw bones function
+    function drawBone(joint1, joint2) {
+            ctx.strokeStyle='red';
+            ctx.lineWidth=2; 
+            ctx.lineCap='round';
+            ctx.beginPath();
+            ctx.moveTo(joint1.depthX * 512 + 3,joint1.depthY * 424 + 3);
+            ctx.lineTo(joint2.depthX * 512 + 3,joint2.depthY * 424 + 3);
+            ctx.stroke();
+    }
+        
+//Draw head function
+        function drawHead(joint) {
+            ctx.beginPath();
+            ctx.fillStyle ='red';
+            ctx.arc(joint.depthX * 512 + 3, joint.depthY * 424 + 3, 15, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.closePath();
+            ctx.globalAlpha = 1;
+
+        }
+    
+
+    socket.on('bodyFrame', function (bodyFrame) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (rect == 1) {
+            ctx.strokeStyle = color;
+            ctx.strokeRect(362, 50, 100, 100);
+            ctx.strokeRect(52,50,100,100);
+        }
+        var index = 0
+        bodyFrame.bodies.forEach(function (body) {
+            if (body.tracked) {
+                for (var jointType in body.joints) {
+                    var joint = body.joints[jointType];
+                    ctx.fillStyle = colors[index];
+                    ctx.fillRect(joint.depthX * 512, joint.depthY * 424, 10, 10);
+                }
+                //draw hand states & bones
+                updateHandState(body.leftHandState, body.joints[7]);
+                updateHandState(body.rightHandState, body.joints[11]);
+                
+                //RightArm
+                    drawBone(body.joints[20], body.joints[8]);
+                    drawBone(body.joints[8], body.joints[9]);
+                    drawBone(body.joints[9], body.joints[10]);
+                    drawBone(body.joints[10], body.joints[11]);
+                    drawBone(body.joints[10], body.joints[24]);
+                    drawBone(body.joints[11], body.joints[23]);
+                    //Body
+                    drawBone(body.joints[3], body.joints[2]);
+                    drawBone(body.joints[2], body.joints[20]);
+                    drawBone(body.joints[20], body.joints[1]);
+                    drawBone(body.joints[1], body.joints[0]);
+                    //LeftArm
+                    drawBone(body.joints[20], body.joints[4]);
+                    drawBone(body.joints[4], body.joints[5]);
+                    drawBone(body.joints[5], body.joints[6]);
+                    drawBone(body.joints[6], body.joints[7]);
+                    drawBone(body.joints[6], body.joints[22]);
+                    drawBone(body.joints[7], body.joints[21]);
+                    //RightLeg
+                    drawBone(body.joints[0], body.joints[16]);
+                    drawBone(body.joints[16], body.joints[17]);
+                    drawBone(body.joints[17], body.joints[18]);
+                    drawBone(body.joints[18], body.joints[19]);
+                    //LeftLeg
+                    drawBone(body.joints[0], body.joints[12]);
+                    drawBone(body.joints[12], body.joints[13]);
+                    drawBone(body.joints[13], body.joints[14]);
+                    drawBone(body.joints[14], body.joints[15]);
+                    //Head
+                    drawHead(body.joints[3])
+
+                index++;
+                //The Rectangle will fix the color in green
+                if (write == 1) {
+                    rect = 1;
+                    color = "Green";
+                    tab[ind] = body;
+                    console.log(tab[ind]);
+                    ind++;
+                }
+            }
+        });
+    });
+
+    function myFunction() {
+            write = 0;
+            msgObject = {
+                'user_name': "Clement",//name.val().trim(),
+                'message': "Clement",//"Clement"//msg.val().trim()
+                'data' : tab
+            };
+
+            socket.emit('message', msgObject);
+            ind = 0;
+            tab = new Array();
+    }
+
+    function myFunction2() {
+
+        write = 1;
+    }
+                    
+    //Session Time Function
+   var sec = 0;
+    var min = 0;
+    var hour = 0;
+    var ncounter = setInterval(telapsed, 1000);
+    function telapsed() {
+            sec = sec + 1;
+            if (sec == 60) {
+                sec = 0;
+                min = min + 1;
+            }
+            else if (min == 60) {
+                sec = 1;
+                min = 0;
+                hour = hour + 1;
+            }
+            if (sec < 10 && min < 10 && hour < 10) {
+                document.getElementById("telapsed").innerHTML = "0" + hour + ":" + "0" + min + ":" + "0" + sec;
+            }
+            else if (min < 10 && hour < 10) {
+                document.getElementById("telapsed").innerHTML = "0" + hour + ":" + "0" + min + ":" + sec;
+            }
+            else if (hour < 10) {
+                document.getElementById("telapsed").innerHTML = "0" + hour + ":" + min + ":" + sec;
+            }
+        }
+</script>
+        
+        
+        
+</body>
+</html>
+
+{% endblock %}

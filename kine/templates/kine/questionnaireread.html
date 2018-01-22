@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<IMG SRC="/media/questions.png" style="text-align:center">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Untitled Form</title>
+<link rel="stylesheet" type="text/css" href="/media/view.css" media="all">
+<script type="text/javascript" src="/media/view.js"></script>
+
+</head>
+<body id="main_body" >
+	
+	<div id="form_container">
+					<div class="form_description">
+					<h2>QUESTIONNAIRE</h2>
+					<h4><span style="color: #224597;">Patient : {{quest.user.user.first_name}} {{quest.user.user.last_name}}</span></h4>
+					<h4><span style="color: #224597;">Type : Before practicing</span></h4>
+					<h4><span style="color: #224597;">Date & Time : {{quest.creation}}</span></h4>
+					</div>						
+		<ul >
+		
+		<li id="li_1" >
+		<label class="description" for="element_1">1. Evaluate your pain</label>
+		<p>'0' means 'No pain' and '10' means 'Excruciating pain'</p> 
+		<div>
+		<p>Assessment scale : {{ quest.q1 }}</p> 
+		</div> 
+		</li>		
+
+		<li id="li_2" >
+		<label class="description" for="element_2">2. Skin</label>
+		<div>
+		<p> Open wound : {{ quest.q21 }}</p>
+        <p> Sensitive skin : {{ quest.q22 }}</p>
+        <p> High local skin temperature : {{ quest.q23 }}</p>
+		</div> 
+		</li>
+
+		<li id="li_3" >
+		<label class="description" for="element_3">3. Oedema</label>
+		<div>
+        <p> Extended on the Entire Lower Limb : {{ quest.q31 }}</p>
+        <p> Relatively Reduced and Local : {{ quest.q32 }}</p>
+        <p> Very Reduced and Local : {{ quest.q33 }}</p>
+		</div> 
+		</li>
+
+		</ul>
+	</div>
+
+	<img id="bottom" src="/media/bottom.png" alt="">
+
+	</body>
+
+    <p><a href="/kine/questionnaire/{{quest.user.user.id}}/" target="_self"><strong>RETURN</strong></a></p>
+
+</html>
+
+{% endblock %}

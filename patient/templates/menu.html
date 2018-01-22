@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>Welcome to ePHoRt!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--menu.css Style Page-->
+        <link rel="stylesheet" href="/media/menu.css" type="text/css">
+
+        <!-- General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+    
+    <!--BOOTSTRAP-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="default.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--BOOTSREAP-->
+    
+    </head>
+
+    <body>
+        <!--Page's Content-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <div class="row">
+                <h2 style="padding: 5px 10px; text-align: center;">WELCOME TO ePHoRt PLATFORM!</h2>
+                </div>
+                
+                <!--Page Logo-->
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4" style="text-align: center">
+                        <img alt="ePHoRt Project" src="/media/logo.png" width="100" height="100">
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+                
+                <!--Page Images-->
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4" style="text-align: center">
+                        <a href="/patient/"> <img alt="Patient" src="/media/Newpatient.png"> </a>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="text-align: center">
+                        <a href="/kine/choice/"> <img alt="Physiotherapist" src="/media/Newphysio.png"> </a>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                
+                <!--Text Under Images-->
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">
+                        <h3 style="padding: 5px 10px; text-align: center;"><a href="/patient/">PATIENT</a></h3>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="text-align: center">
+                        <h3 style="padding: 5px 10px; text-align: center;"><a href="/kine/choice/">PHYSIOTHERAPIST</a></h3>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                
+                <!--Help Info-->
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4" style="text-align: center">
+                        <button type="button" class="btn btn-info btn-md" onclick="helpme()">HELP?</button>
+                        <div id="help" style="display: none">This is the ePHoRt platform page. Choose one of the options to access login page.</div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!--Help Button Script-->
+        <script>
+            function helpme() {
+                var x = document.getElementById('help');
+                if (x.style.display === 'none') {
+                    x.style.display = 'block';
+                } 
+                else {
+                    x.style.display = 'none';
+                }
+            }
+        </script>
+        
+    </body>
+</html>
+
+
+{% endblock %}

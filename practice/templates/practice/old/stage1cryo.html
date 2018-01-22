@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><span style="color: #3366cc;"><big>STAGE 1 <b>: </b>Acute Rehabilitation : Cryotherapy </big> </span></h2>
+
+<h3 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><span style="color: #3366cc;"><big>Begin on {{stage.begin}}, Day {{day1.day}}</big></span></h3>
+
+<p>&nbsp;</p>
+<h5 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">You have to apply a cryotherapy device 5&deg; D or an ice bag for 15 minutes</span></h5>
+<h5 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">Press the button [Done !] when you have finished</span></h5>
+<h5 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">If you need help you have a 15 minutes countdown timer</span></h5>
+
+<html>
+
+<head>
+<script type="text/javascript">
+var Timer;
+var TotalSeconds;
+
+
+function CreateTimer(TimerID, Time) {
+Timer = document.getElementById(TimerID);
+TotalSeconds = Time;
+
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+
+function Tick() {
+if (TotalSeconds <= 0) {
+alert("Time's up!")
+return;
+}
+
+TotalSeconds -= 1;
+UpdateTimer()
+window.setTimeout("Tick()", 1000);
+}
+
+function UpdateTimer() {
+var Seconds = TotalSeconds;
+
+var Days = Math.floor(Seconds / 86400);
+Seconds -= Days * 86400;
+var Hours = Math.floor(Seconds / 3600);
+Seconds -= Hours * (3600);
+
+var Minutes = Math.floor(Seconds / 60);
+Seconds -= Minutes * (60);
+
+
+var TimeStr = ((Days > 0) ? Days + " days " : "") + LeadingZero(Hours) + ":" + LeadingZero(Minutes) + ":" + LeadingZero(Seconds)
+
+
+Timer.innerHTML = TimeStr;
+}
+
+function LeadingZero(Time) {
+
+return (Time < 10) ? "0" + Time : + Time;
+
+}
+
+function myFunction() {
+
+window.onload = CreateTimer("timer", 900);
+
+}
+
+</script>
+</head>
+<body>
+<h1 style="text-align: center;">
+<div id='timer' />
+<button type="button" onclick="myFunction()"> Launch countdown (15 min) </button>
+</h1>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <form id="user_form" method="post" action="/practice/stage1/cryotherapy/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <h3 style="text-align: center;"><span style="font-family: arial,helvetica,sans-serif;">CONTINUE TO NEXT STEP &#128073; : </span>
+            <!-- Provide a button to click to submit the form. -->
+            <button type="submit" name ="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">DONE ! &#128076</i></button></h3>
+        </form>
+    </body>
+</html>
+
+<html>
+<h2><a href="/practice/stage1/" target="_self">&#128072; BACK TO STAGE 1</a></h2>
+</html>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+
+from django.conf.urls import url
+
+from . import views
+
+urlpatterns = [
+    url(r'^menu/$', views.menu , name='menu'),
+    url(r'^messagerie/$', views.messagerie , name='messagerie'),
+    url(r'^messagerie/inbox/$', views.inbox, name='messagerieinbox'),
+    url(r'^messagerie/write/$', views.write , name='messageriewrite'),
+    url(r'^messagerie/sent/$', views.sent , name='messageriesent'),
+    url(r'^messagerie/contact/$', views.contact , name='messageriecontact'),
+    url(r'^messagerie/delete/(?P<pk>[\-\w]+)/$', views.delete, name='messageriedelete'),
+    url(r'^messagerie/read/(?P<pk>[\-\w]+)/$', views.read, name='messagerieread'),
+    url(r'^messagerie/deletemesrec/(?P<pk>[\-\w]+)/$', views.deletemesrec, name='messageriedeletemesrec'),
+    url(r'^messagerie/deletemessen/(?P<pk>[\-\w]+)/$', views.deletemessen, name='messageriedeletemessen'),
+    url(r'^kinect/$', views.kinect , name='kinect'),
+    url(r'^stage1/$', views.stage1 , name='stage1'),
+    url(r'^stage2/$', views.stage2 , name='stage2'),
+    url(r'^stage1/education/$', views.stage1education , name='stage1education'),
+    url(r'^stage1/cryotherapy/$', views.stage1cryo , name='stage1cryo'),
+    url(r'^stage1/exercise/$', views.stage1ex , name='stage1ex'),
+    url(r'^stage1/exercise/ex1set1/$', views.stage1ex1set1 , name='stage1ex1set1'),
+    url(r'^stage1/exercise/ex1set2/$', views.stage1ex1set2 , name='stage1ex1set2'),
+    url(r'^stage1/exercise/ex1set3/$', views.stage1ex1set3 , name='stage1ex1set3'),
+    url(r'^stage1/exercise/ex2set1/$', views.stage1ex2set1 , name='stage1ex2set1'),
+    url(r'^stage1/exercise/ex2set2/$', views.stage1ex2set2 , name='stage1ex2set2'),
+    url(r'^stage1/exercise/ex2set3/$', views.stage1ex2set3 , name='stage1ex2set3'),
+    url(r'^stage1/exercise/ex3set1/$', views.stage1ex3set1 , name='stage1ex3set1'),
+    url(r'^stage1/exercise/ex3set2/$', views.stage1ex3set2 , name='stage1ex3set2'),
+    url(r'^stage1/exercise/ex3set3/$', views.stage1ex3set3 , name='stage1ex3set3'),
+    url(r'^stage1/exercise/ex4set1/$', views.stage1ex4set1 , name='stage1ex4set1'),
+    url(r'^stage1/exercise/ex4set2/$', views.stage1ex4set2 , name='stage1ex4set2'),
+    url(r'^stage1/exercise/ex4set3/$', views.stage1ex4set3 , name='stage1ex4set3'),
+    url(r'^stage1/exercise/ex5set1/$', views.stage1ex5set1 , name='stage1ex5set1'),
+    url(r'^stage1/exercise/ex5set2/$', views.stage1ex5set2 , name='stage1ex5set2'),
+    url(r'^stage1/exercise/ex5set3/$', views.stage1ex5set3 , name='stage1ex5set3'),
+    url(r'^stage1/exercise/ex6set1/$', views.stage1ex6set1 , name='stage1ex6set1'),
+    url(r'^stage1/exercise/ex6set2/$', views.stage1ex6set2 , name='stage1ex6set2'),
+    url(r'^stage1/exercise/ex6set3/$', views.stage1ex6set3 , name='stage1ex6set3'),
+    url(r'^stage1/exercise/ex7set1/$', views.stage1ex7set1 , name='stage1ex7set1'),
+    url(r'^stage1/exercise/ex7set2/$', views.stage1ex7set2 , name='stage1ex7set2'),
+    url(r'^stage1/exercise/ex7set3/$', views.stage1ex7set3 , name='stage1ex7set3'),
+    url(r'^stage1/exercise/ex8set1/$', views.stage1ex8set1 , name='stage1ex8set1'),
+    url(r'^stage1/exercise/ex8set2/$', views.stage1ex8set2 , name='stage1ex8set2'),
+    url(r'^stage1/exercise/ex8set3/$', views.stage1ex8set3 , name='stage1ex8set3'),
+    url(r'^stage1/exercise/ex9set1/$', views.stage1ex9set1 , name='stage1ex9set1'),
+    url(r'^stage1/exercise/ex9set2/$', views.stage1ex9set2 , name='stage1ex9set2'),
+    url(r'^stage1/exercise/ex9set3/$', views.stage1ex9set3 , name='stage1ex9set3'),
+]
+
+

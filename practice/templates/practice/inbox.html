@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Messaging System: Inbox</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Inbox Page CSS Style Page-->
+        <link rel="stylesheet" href="/media/inbox.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        
+    </head>
+    
+    <body>
+        
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container" style="text-align: center; margin-top: 20px;">
+                <div class="row">
+                    <h2><span style="color: #886493;">RECEIVED MESSAGES</span></h2>
+                    {% if data %}
+                    <ul>
+                        {% for message in data %} 
+                        {% if message.4 == False and message.6 == False %}
+                        <li><a href="/practice/messagerie/read/{{message.5}}" style="text-decoration: none"> &#128310; &#128065; </a> |Date| {{message.0}} |Sender| {{message.1}} {{message.2}} |Object| {{message.3}}    <a href="/practice/messagerie/deletemesrec/{{message.5}}/" style="text-decoration: none"> &nbsp;&nbsp;&nbsp;&#128465; </a></li>
+                        {% endif %}
+                        {% if message.4 == True and message.6 == False %}
+                        <li><a href="/practice/messagerie/read/{{message.5}}" style="text-decoration: none"> &#128065; </a> |Date| {{message.0}} |Sender| {{message.1}} {{message.2}} |Object| {{message.3}}    <a href="/practice/messagerie/deletemesrec/{{message.5}}/" style="text-decoration: none"> &nbsp;&nbsp;&nbsp;&#128465; </a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>No messages received</p>
+                    {% endif %}
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <h2><span style="color: #886493;">SENT MESSAGES</span></h2>
+                    {% if data2 %}
+                    <ul>
+                        {% for message in data2 %}
+                        {% if message.6 == False %}
+                        <li><a href="/practice/messagerie/read/{{message.5}}" style="text-decoration: none"> &#128065; </a> |Date| {{message.0}} |Receiver| {{message.1}} {{message.2}} |Object| {{message.3}}    <a href="/practice/messagerie/deletemessen/{{message.5}}" style="text-decoration: none"> &nbsp;&nbsp;&nbsp;&#128465; </a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>No messages sent</p>
+                    {% endif %}
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <a style="text-decoration: none !important" href="/practice/messagerie/" target="_self"><button type="button" class="btn btn-danger btn-md">RETURN TO MESSAGING</button></a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2 style="border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;"><span style="color: #3366cc;"><big>Practice Menu : Choose a stage</big></span></h2>
+
+<p>&nbsp;</p>
+
+{% if user_autho.stage1 == True %}
+    <h1 style="text-align: center;"><a href="/practice/stage1/"><span style="color: #00cccc;"><span style="background-color: rgb(236, 240, 241);">&#128275; STAGE 1 &#128073;</span></span></a></h1>
+{% endif %}
+{% if user_autho.stage1 == False %}
+    <h1 style="text-align: center;"><a href="/practice/menu/"><span style="color: #bdc3c7;"><span style="background-color: rgb(255, 102, 102);">STAGE 1 &#128274;</span></span></a></h1>
+{% endif %}
+<p style="text-align: center;">&nbsp;</p>
+
+{% if user_autho.stage2 == True %}
+    <h1 style="text-align: center;"><a href="/assessment/"><span style="color: #00cccc;"><span style="background-color: rgb(236, 240, 241);">&#128275; STAGE 2 &#128073;</span></span></a></h1>
+{% endif %}
+{% if user_autho.stage2 == False %}
+    <h1 style="text-align: center;"><a href="/practice/menu/"><span style="color: #bdc3c7;"><span style="background-color: rgb(255, 102, 102);">STAGE 2 &#128274;</span></span></a></h1>
+{% endif %}
+<p style="text-align: center;">&nbsp;</p>
+
+{% if user_autho.stage3 == True %}
+    <h1 style="text-align: center;"><a href="http://www.google.ec"><span style="color: #00cccc;"><span style="background-color: rgb(236, 240, 241);">&#128275; STAGE 3 &#128073;</span></span></a></h1>
+{% endif %}
+{% if user_autho.stage3 == False %}
+    <h1 style="text-align: center;"><a href="/practice/menu/"><span style="color: #bdc3c7;"><span style="background-color: rgb(255, 102, 102);">STAGE 3 &#128274;</span></span></a></h1>
+{% endif %}
+
+<h2><a href="/patient/" target="_self">&#128072; BACK TO PATIENT MENU</a></h2>
+
+{% endblock %}

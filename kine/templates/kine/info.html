@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1><span style="font-family: arial,helvetica,sans-serif; color: #666699;"> {{user.first_name}}, Choose an option </span></h1>
+
+<a href="/accountsadmin/password_change/">[ Change your password ]</a></p>
+
+<a href="/extra/updatekine/{{user.id}}/">[ Update your information ]</a></p>
+
+<p><a href="/physio/" target="_self"><strong>RETURN</strong></a></p>
+
+
+{% endblock %}

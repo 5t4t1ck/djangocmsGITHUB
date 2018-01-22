@@ -1,0 +1,110 @@
+﻿/*This is the CSS stylesheet for the index page of the Kinect Assessment Module*/
+
+body              { margin: 0; background: #FFF;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                  }
+a, 
+a:visited, 
+a:active, 
+a:hover           { text-decoration: none; blr:expression(this.onFocus=this.blur()); cursor: pointer;}
+
+a                 { outline: none; /* for Firefox Chrome */ behavior:expression(this.onFocus=this.blur()); /* for IE */} 
+a:focus           { -moz-outline-style: none; outline: none; } /* for Firefox Chrome */
+
+a:link            { text-decoration: none;}
+a:visited         { text-decoration: none;}
+a:hover           { text-decoration: none;}
+input, 
+textarea,         { font-family: 'Roboto','Helvetica Neue',Helvetica, Arial,'Apple LiGothic Medium','STHeiti Light','微軟正黑體','Microsoft JhengHei',sans-serif;}
+input:focus, 
+textarea:focus    { outline: none;}
+
+.wrapper{
+    color: #fff;
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: 'Roboto','Helvetica Neue',Helvetica, Arial,'Apple LiGothic Medium','STHeiti Light','微軟正黑體','Microsoft JhengHei',sans-serif;
+}
+.wrapper p{
+    line-height: 1.5em;
+}
+
+.header{
+    height: 70px;
+    border-bottom: 1px solid #333;
+    position: absolute;
+    background: #000;
+    width: 100%;
+    top: 0px; /* for header */
+    left: 0;
+    z-index: 100;
+}
+
+.header.sticky{ /* sticky header */
+    position: fixed;
+    top: 0;
+}
+.header-inner{
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+.header .logo{
+    height: 50px;
+    padding-top: 10px;
+}
+.header .menu{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+    height: 70px;
+}
+.header .menu li{
+    margin: 0 10px 0 40px;
+    padding: 0;
+    float: left;
+}
+.header .menu li a{
+    display: block;
+    border-bottom: 4px solid #000;
+    line-height: 70px;
+    height: 66px;
+    color: #bbb;
+}
+.header .menu li a:hover{
+    color: #fff;
+}
+.header .menu li a.active{
+    color: #fff;
+    border-color: #cf121c;
+}
+.header .menu li a.icon-cart{
+    background: url(../Image/UI/icon-cart.png) left center no-repeat;
+    background-size: 25px;
+    padding-left: 33px;
+    padding-bottom: 0;
+}
+
+.header .burger-wrapper{
+    display: none;
+}
+.header .burger{
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+}
+.header .burger-off{
+    background-image: url(../Image/UI/burger-off.png);
+    display: none;
+}
+.header .burger-on{
+    background-image: url(../Image/UI/burger-on.png);
+}

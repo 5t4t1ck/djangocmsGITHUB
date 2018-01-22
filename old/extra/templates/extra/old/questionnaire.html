@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration</title>
+    </head>
+
+    <body>
+        <p><span style="font-family: verdana,geneva; color: #666699; font-size: large;">Before practicing : Questionnaire</span></p>
+
+        <form id="user_form" method="post" action="/extra/questionnaire/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+            
+            <p><span style="font-family: arial,helvetica,sans-serif; color: #333333; font-size: medium;"><span style="text-decoration: underline;">1.Pain</span></span></p>
+            <p> Assessment scale : {{ question_form.q1 }}</p>
+            <p><span style="font-family: arial,helvetica,sans-serif; color: #333333; font-size: medium;"><span style="text-decoration: underline;">2.Skin</span></span></p>
+            <p> Open wound : {{ question_form.q21 }}</p>
+            <p> Sensitive skin : {{ question_form.q22 }}</p>
+            <p> High local skin temperature : {{ question_form.q23 }}</p>
+            <p><span style="font-family: arial,helvetica,sans-serif; color: #333333; font-size: medium;"><span style="text-decoration: underline;">3.Oedema</span></span></p> 
+            <p> Extended on the Entire Lower Limb : {{ question_form.q31 }}</p>
+            <p> Relatively Reduced and Local : {{ question_form.q32 }}</p>
+            <p> Very Reduced and Local : {{ question_form.q33 }}</p>
+
+            <!-- Provide a button to click to submit the form. -->
+            <button type="submit" name ="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">Verification</i></button>
+            <p><a href="/patient/practice/" target="_self"><strong>RETURN</strong></a></p>
+        </form>
+    </body>
+</html>

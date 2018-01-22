@@ -1,0 +1,10 @@
+<div class="col-md-4">
+    <div class="form-group">
+    <label>Gender dgert</label>
+    <select name="gender" class="selectpicker" data-title="Select Gender" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+    {% for x,y in form.fields.gender.choices %}
+       <option value="{{ x }}"{% if form.fields.gender.value == x %} selected{% endif %}>{{ y }}</option>
+    {% endfor %}
+    </select>
+  </div>  
+</div>

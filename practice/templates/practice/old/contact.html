@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact registration </title>
+    </head>
+
+    <body>
+        <p><span style="font-family: verdana,geneva; color: #666699; font-size: large;">See & Add Contact</span></p>
+
+        <form id="user_form" method="post" action="/practice/messagerie/contact/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {% if data %}
+            <ul>
+                {% for contact in data %}
+                <li>{{ contact.0 }} : {{ contact.1 }} {{ contact.2 }} <a href="/practice/messagerie/delete/{{contact.3}}" style="text-decoration: none"> &#128465; </a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No contacts</p>
+            {% endif %}
+            
+            <p><span style="font-family: arial,helvetica,sans-serif; color: #333333; font-size: medium;"><span style="text-decoration: underline;">Add a contact by enter the username</span></span></p>
+            <p> Username of new contact : {{ contact_form.userreceiver }}</p>
+   
+            <button type="submit" name ="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">ADD CONTACT</i></button>
+            <p><a href="/practice/messagerie/" target="_self"><strong>RETURN TO MESSAGING</strong></a></p>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

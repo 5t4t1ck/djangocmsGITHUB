@@ -1,0 +1,9 @@
+/*Patient's List CSS Style Page*/
+
+h3 {
+    font-family: verdana, geneva, sans-serif;
+}
+
+#info {
+    display: none;
+}

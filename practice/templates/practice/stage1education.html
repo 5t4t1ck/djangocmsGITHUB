@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Stage 1: Education!</title>
+        <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+        
+        <!--General CSS Style Page-->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/TiagoFilipeSousaGoncalves/eNTERFACE17/e9db14cc/mainNav.css" type="text/css">
+        
+        <!--Stage 1 Education Menu CSS Style Page-->
+        <link rel="stylesheet" href="/media/stage1education.css" type="text/css">
+    
+        <!--BOOTSTRAP-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="default.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+    </head>
+    
+    <body>       
+        <!--Page's Contents-->
+        <section class="jumbotron" style="background-color: #FFFFFF">
+            <div class="container">
+                <div class="row">
+                    <h2><span style="color: #DC6750;"><big>STAGE 1 <b>: </b>Acute Rehabilitation : Education</big></span></h2>
+                </div>
+                <div class="row">
+                    <h3 style="padding: 5px 10px; text-align: center;"><big>Begin on {{stage.begin}}, Day {{day1.day}}</big></h3>
+                </div>
+                <div class="row" style="text-align: justify">
+                    
+                        <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">1. How to move normally &#128065;</a></h2>
+                    
+                    <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">2. Advice: Fluid balance in legs &#128065;</a></h2>
+                    
+                    <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">3. Instruction: Use of walking aids &#128065;</a></h2>
+                        
+                        <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">4. How to practice exercise properly &#128065;</a></h2>
+                        
+                        <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">5. Precaution about the range of motions and weight bearing &#128065;</a></h2>
+                        
+                        <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">6. How to do exercise: Correct and wrong way &#128065;</a></h2>
+                        
+                        <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">7. How to do ADL &#128065;</a></h2>
+
+                        <h2><a style="text-decoration: none !important; color: black;" href="http://www.google.ec">8. How to facilitate muscle recovery and to stretch muscles and joints &#128065;</a></h2>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                <a href="/practice/stage1/" target="_self" style="text-decoration: none !important"><button type="button" class="btn btn-primary btn-block">RETURN TO STAGE 1</button></a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endblock %}

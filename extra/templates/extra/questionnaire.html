@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<IMG SRC="/media/quest.png" style="text-align:center">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Untitled Form</title>
+<link rel="stylesheet" type="text/css" href="/media/view.css" media="all">
+<script type="text/javascript" src="/media/view.js"></script>
+
+</head>
+<body id="main_body" >
+	
+	<div id="form_container">
+		<form id="user_form" method="post" action="/extra/questionnaire/" enctype="multipart/form-data">
+        {% csrf_token %}
+					<div class="form_description">
+					<h2>QUESTIONNAIRE</h2>
+					<p>Answer all those questions before practicing</p>
+					</div>						
+		<ul >
+		
+		<li id="li_1" >
+		<label class="description" for="element_1">1. Evaluate your pain</label>
+		<p>'0' means 'No pain' and '10' means 'Excruciating pain'</p> 
+		<div>
+		<p>Assessment scale : {{ question_form.q1 }}</p> 
+		</div> 
+		</li>		
+
+		<li id="li_2" >
+		<label class="description" for="element_2">2. Skin</label>
+		<div>
+		<p> Open wound : {{ question_form.q21 }}</p>
+        <p> Sensitive skin : {{ question_form.q22 }}</p>
+        <p> High local skin temperature : {{ question_form.q23 }}</p>
+		</div> 
+		</li>
+
+		<li id="li_3" >
+		<label class="description" for="element_3">3. Oedema</label>
+		<div>
+        <p> Extended on the Entire Lower Limb : {{ question_form.q31 }}</p>
+        <p> Relatively Reduced and Local : {{ question_form.q32 }}</p>
+        <p> Very Reduced and Local : {{ question_form.q33 }}</p>
+		</div> 
+		</li>
+		
+			
+		<li class="buttons">
+		<input type="hidden" name="form_id" value="41894" /> 
+		<input id="saveForm" class="button_text" type="submit" name="submit" value="Verification" />
+		</li>
+
+		</ul>
+		</form>	
+	</div>
+
+	<img id="bottom" src="/media/bottom.png" alt="">
+
+	</body>
+
+    <p><a href="/patient/practice/" target="_self"><strong>RETURN</strong></a></p>
+
+</html>
+
+{% endblock %}
